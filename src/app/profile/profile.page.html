@@ -1,0 +1,32 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="profile-toolbar">
+    <ion-title>Perfil</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="danger" (click)="logout()">
+        <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding profile-content">
+  <div class="profile-container" *ngIf="user">
+    <div class="avatar-container">
+      <ion-avatar>
+        <img [src]="'https://ui-avatars.com/api/?name=' + user.name + '&background=random&color=fff&size=128'" alt="Avatar">
+      </ion-avatar>
+      <h2>{{ user.name }}</h2>
+      <p>{{ user.email }}</p>
+    </div>
+
+    <div class="profile-details">
+      <ion-item lines="none" class="detail-item">
+        <ion-icon name="person-circle-outline" slot="start"></ion-icon>
+        <ion-label>
+          <h3>Cuenta Activa</h3>
+          <p>FluencyLoop Usuario</p>
+        </ion-label>
+      </ion-item>
+    </div>
+  </div>
+</ion-content>

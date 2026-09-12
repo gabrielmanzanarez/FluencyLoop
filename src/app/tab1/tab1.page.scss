@@ -1,0 +1,55 @@
+ion-content.splash-content {
+  --background: #121212;
+}
+
+.splash-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 80px 20px 60px;
+  /* Top and bottom padding */
+}
+
+.title-container {
+  margin-top: 10vh;
+  /* Puts it at the upper part of the screen */
+
+  h1 {
+    font-size: 48px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -1px;
+
+    .text-white {
+      color: #ffffff;
+    }
+
+    .text-green {
+      color: #4CAF50;
+      /* Blue color for Loop */
+    }
+  }
+}
+
+.loading-container {
+  p {
+    color: #a0a0a0;
+    font-size: 18px;
+    margin: 0;
+    animation: pulse 2s infinite;
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+}

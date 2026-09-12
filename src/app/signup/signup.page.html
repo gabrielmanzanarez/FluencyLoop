@@ -1,0 +1,38 @@
+<ion-content [fullscreen]="true" class="ion-padding auth-content">
+  <div class="auth-container">
+    <div class="logo-container">
+      <ion-icon name="language-outline"></ion-icon>
+      <h1>FluencyLoop</h1>
+      <p>Crea una nueva cuenta</p>
+    </div>
+
+    <form (ngSubmit)="onSignup()">
+      <ion-text color="danger" *ngIf="errorMessage">
+        <p class="error-msg">{{ errorMessage }}</p>
+      </ion-text>
+
+      <ion-item lines="none" class="input-item">
+        <ion-icon name="person-outline" slot="start"></ion-icon>
+        <ion-input type="text" placeholder="Nombre completo" [(ngModel)]="name" name="name" required></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" class="input-item">
+        <ion-icon name="mail-outline" slot="start"></ion-icon>
+        <ion-input type="email" placeholder="Correo electrónico" [(ngModel)]="email" name="email" required></ion-input>
+      </ion-item>
+
+      <ion-item lines="none" class="input-item">
+        <ion-icon name="lock-closed-outline" slot="start"></ion-icon>
+        <ion-input type="password" placeholder="Contraseña" [(ngModel)]="password" name="password" required></ion-input>
+      </ion-item>
+
+      <ion-button type="submit" expand="block" class="submit-btn" shape="round">
+        Registrarse
+      </ion-button>
+    </form>
+
+    <div class="footer-text">
+      <p>¿Ya tienes una cuenta? <a (click)="goToLogin()">Inicia Sesión</a></p>
+    </div>
+  </div>
+</ion-content>
