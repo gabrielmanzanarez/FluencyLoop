@@ -9,12 +9,20 @@ CREATE TABLE IF NOT EXISTS users (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
--- Ejemplos de otras tablas que podrías necesitar en el futuro para FluencyLoop:
+-- Tabla de Idiomas Disponibles
+CREATE TABLE IF NOT EXISTS languages (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    code VARCHAR(10) NOT NULL,
+    icon_url VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
--- CREATE TABLE IF NOT EXISTS progress (
+-- Ejemplo de tabla para progreso (Relación usuario -> idioma)
+-- CREATE TABLE IF NOT EXISTS user_languages (
 --     id SERIAL PRIMARY KEY,
 --     user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
---     lesson_id INTEGER NOT NULL,
---     score INTEGER DEFAULT 0,
---     completed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+--     language_id INTEGER REFERENCES languages(id) ON DELETE CASCADE,
+--     progress_percentage INTEGER DEFAULT 0,
+--     started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 -- );

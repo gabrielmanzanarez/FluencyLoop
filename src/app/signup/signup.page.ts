@@ -26,7 +26,7 @@ export class SignupPage implements OnInit {
 
   ngOnInit() {
     if (localStorage.getItem('user')) {
-      this.router.navigate(['/tabs/tab3']);
+      this.router.navigate(['/tabs/home']);
     }
   }
 

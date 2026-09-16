@@ -1,0 +1,33 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="home-toolbar">
+    <ion-title>FluencyLoop</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" color="danger" (click)="logout()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="welcome-container">
+    <ion-text>
+      <h1>Welcome, {{ userName }}!</h1>
+      <p>Choose a language to start learning</p>
+    </ion-text>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let lang of languages">
+        <ion-card class="language-card" button="true" (click)="goToLessons(lang.id)">
+          <img [src]="lang.icon_url" [alt]="lang.name" class="flag-icon" />
+          <ion-card-header>
+            <ion-card-title>{{ lang.name }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

@@ -25,7 +25,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     if (localStorage.getItem('user')) {
-      this.router.navigate(['/tabs/tab3']);
+      this.router.navigate(['/tabs/home']);
     }
   }
 
@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
       next: (res) => {
         console.log('Inicio de sesión exitoso:', res);
         localStorage.setItem('user', JSON.stringify(res.user));
-        this.router.navigate(['/tabs/tab3']);
+        this.router.navigate(['/splash']);
       },
       error: (err) => {
         console.error('Error de inicio de sesión:', err);

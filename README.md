@@ -4,7 +4,7 @@ FluencyLoop is a modern, cross-platform mobile application built with **Ionic Fr
 
 ## Features Implemented So Far
 
-### 📱 Frontend (Ionic + Angular Standalone Components)
+### Frontend (Ionic + Angular Standalone Components)
 - **Splash Screen (`tab1`):** A custom, animated splash screen that serves as the entry point of the app. It checks for an active session and seamlessly redirects users to the main application or the login screen.
 - **Authentication Flow:** 
   - Minimalist and dark-themed **Login** and **Signup** pages.
@@ -15,7 +15,7 @@ FluencyLoop is a modern, cross-platform mobile application built with **Ionic Fr
   - **Profile Tab (`tab3`):** A dedicated profile view displaying user information and an auto-generated avatar (via UI Avatars). Includes a fully functional "Logout" mechanism that resets the app state and clears the local session.
 - **Session Management:** LocalStorage-based session persistence to keep users logged in even after refreshing or closing the app.
 
-### ⚙️ Backend (Node.js + Express)
+### Backend (Node.js + Express)
 - **Server:** A lightweight Express.js REST API.
 - **Database Connection:** Integrated with a serverless PostgreSQL database (Neon DB) using the `pg` library.
 - **Robust Error Handling:** Added safeguards against idle connection terminations (a common behavior in serverless databases) to prevent unexpected server crashes.
