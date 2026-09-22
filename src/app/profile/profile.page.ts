@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { IonContent, IonHeader, IonToolbar, IonTitle, IonButton, IonButtons, IonIcon, IonAvatar, IonItem, IonLabel } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { logOutOutline, personCircleOutline } from 'ionicons/icons';
+import { Preferences } from '@capacitor/preferences';
 
 @Component({
   selector: 'app-profile',
@@ -15,22 +16,28 @@ import { logOutOutline, personCircleOutline } from 'ionicons/icons';
 })
 export class ProfilePage implements OnInit {
   user: any = null;
+  private cdr = inject(ChangeDetectorRef);
 
   constructor(private navCtrl: NavController) {
     addIcons({ logOutOutline, personCircleOutline });
   }
 
-  ngOnInit() {
-    const userData = localStorage.getItem('user');
-    if (userData) {
-      this.user = JSON.parse(userData);
+  async ngOnInit() {
+    const { value } = await Preferences.get({ key: 'user' });
+    if (value && value !== 'undefined') {
+      try {
+        this.user = JSON.parse(value);
+      } catch (e) {
+        console.error('Error parsing user from Preferences', e);
+      }
     } else {
       this.navCtrl.navigateRoot('/login');
     }
+    this.cdr.detectChanges();
   }
 
-  logout() {
-    localStorage.removeItem('user');
-    window.location.href = '/login';
+  async logout() {
+    await Preferences.remove({ key: 'user' });
+    this.navCtrl.navigateRoot('/login');
   }
 }

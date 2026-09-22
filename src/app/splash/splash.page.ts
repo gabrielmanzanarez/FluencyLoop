@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { IonContent } from '@ionic/angular';
+import { IonContent, IonSpinner, IonText } from '@ionic/angular';
+import { Preferences } from '@capacitor/preferences';
 
 @Component({
   selector: 'app-splash',
@@ -9,17 +11,17 @@ import { IonContent } from '@ionic/angular';
   standalone: true,
   imports: [IonContent]
 })
-export class SplashPage implements OnInit {
+export class SplashPage {
   constructor(private router: Router) {}
 
-  ngOnInit() {
-    setTimeout(() => {
-      const user = localStorage.getItem('user');
-      if (user) {
+  ionViewDidEnter() {
+    setTimeout(async () => {
+      const { value } = await Preferences.get({ key: 'user' });
+      if (value) {
         this.router.navigate(['/tabs/home']);
       } else {
         this.router.navigate(['/login']);
       }
-    }, 4000);
+    }, 1500);
   }
 }

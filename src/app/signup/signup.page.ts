@@ -6,6 +6,7 @@ import { IonContent, IonItem, IonInput, IonButton, IonIcon, IonText } from '@ion
 import { addIcons } from 'ionicons';
 import { mailOutline, lockClosedOutline, personOutline, languageOutline } from 'ionicons/icons';
 import { AuthService } from '../services/auth.service';
+import { Preferences } from '@capacitor/preferences';
 
 @Component({
   selector: 'app-signup',
@@ -24,8 +25,9 @@ export class SignupPage implements OnInit {
     addIcons({ mailOutline, lockClosedOutline, personOutline, languageOutline });
   }
 
-  ngOnInit() {
-    if (localStorage.getItem('user')) {
+  async ngOnInit() {
+    const { value } = await Preferences.get({ key: 'user' });
+    if (value) {
       this.router.navigate(['/tabs/home']);
     }
   }

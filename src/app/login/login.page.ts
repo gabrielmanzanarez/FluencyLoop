@@ -6,6 +6,7 @@ import { IonContent, IonItem, IonInput, IonButton, IonIcon, IonText } from '@ion
 import { addIcons } from 'ionicons';
 import { mailOutline, lockClosedOutline, languageOutline } from 'ionicons/icons';
 import { AuthService } from '../services/auth.service';
+import { Preferences } from '@capacitor/preferences';
 
 @Component({
   selector: 'app-login',
@@ -19,13 +20,15 @@ export class LoginPage implements OnInit {
   password = '';
   errorMessage = '';
 
-  constructor(private router: Router, private authService: AuthService) { 
+  constructor(
+    private router: Router, private authService: AuthService) {
     addIcons({ mailOutline, lockClosedOutline, languageOutline });
   }
 
-  ngOnInit() {
-    if (localStorage.getItem('user')) {
-      this.router.navigate(['/tabs/home']);
+  async ngOnInit() {
+    const { value } = await Preferences.get({ key: 'user' });
+    if (value) {
+      this.router.navigate(['/splash']);
     }
   }
 
@@ -37,9 +40,9 @@ export class LoginPage implements OnInit {
     }
 
     this.authService.login({ email: this.email, password: this.password }).subscribe({
-      next: (res) => {
+      next: async (res) => {
         console.log('Inicio de sesión exitoso:', res);
-        localStorage.setItem('user', JSON.stringify(res.user));
+        await Preferences.set({ key: 'user', value: JSON.stringify(res.user) });
         this.router.navigate(['/splash']);
       },
       error: (err) => {
